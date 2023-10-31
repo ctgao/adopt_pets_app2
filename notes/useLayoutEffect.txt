@@ -1,0 +1,7 @@
+useLayoutEffect() notes
+
+A very NICHE case. I want to measure something, only after it has been rendered. For example, a resizeable
+textarea. Using useLayoutEffect over useEffect means that you don't have to see the little glitches that
+happen when you're in the middle of resizing.
+
+componentDidMount() from class components === useLayoutEffect() from function components
