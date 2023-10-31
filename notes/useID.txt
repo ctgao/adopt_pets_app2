@@ -1,0 +1,8 @@
+useID() notes
+
+Generates a unique id that has allowed users to associate a label with an input, and make a unique one
+such that React/Javascript/HTML will not be angry. By doing it this way, we save ourselves a lot of work
+since now we don't have to create an id ourselves and maintain that all of these ids by passing them in
+as props.
+
+Note: don't use for loops inside of hooks. This is BAD practice
