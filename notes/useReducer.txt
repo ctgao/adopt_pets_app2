@@ -1,0 +1,45 @@
+useReducer() notes
+
+Redux is like a central store in React. Store as in "stores" your stuff.
+Reducer is a function that takes in a portion of the state and an action, and returns a portion of
+that state.
+**************************************************************************************
+I think for our intents and purposes, a reducer is like an updateState() but with some
+caveats and specialities. From my current understanding, state is meant to be immutable, so reducers
+"modify" that state by essentially making a copy and returning the copy that replaces the old state.
+**************************************************************************************
+
+Pro: using a reducer means that this is TESTABLE!!! No side effects as well!
+
+Gonna post a lil snippet here:
+    const reducer = (state, action) => {
+      switch (action.type) {
+        case 'INCREMENT_H':
+          return Object.assign({}, state, { h: (state.h + step) % 360 });
+        case 'DECREMENT_H':
+          return Object.assign({}, state, { h: (state.h - step) % 360 });
+...more code here...
+        default:
+          return state;
+      }
+    };
+
+...more code here...
+
+    const UseReducerComponent = () => {
+      const [{ h, s, l }, dispatch] = useReducer(reducer, { h: 50, s: 50, l: 50 });
+      return (
+...more code here...
+        <div className="btn-group">
+          <span class="btn-label">Hue</span>
+          <button onClick={() => dispatch({ type: 'INCREMENT_H' })}>➕</button>
+          <button onClick={() => dispatch({ type: 'DECREMENT_H' })}>➖</button>
+        </div>
+...more code here...
+
+As we can see, we use dispatch of that reducer in order to use the reducer itself. We set our initial
+state in the beginning as well, and have it be linked to the state as a JSON. When we dispatch,
+we give it an action with an identifier so the reducer knows what that action is called. Then we use
+the switch statement to take care of which state change to make.
+
+useState and useReducer effectively do the same thing, reducers can be more complex though.
