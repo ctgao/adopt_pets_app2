@@ -17,14 +17,15 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  // passing in the WHOLE hook to the context
-  // this makes this context READ and WRITE
   const adoptedPetHook = useState(null);
-  // too much app state??? just use redux - package everything into a STORE
-  // AKA store all these different states that any page can use
 
   return (
-    <div>
+    <div
+      className="m-0 p-0"
+      style={{
+        background: "url(http://pets-images.dev-apis.com/pets/wallpaperB.jpg)",
+      }}
+    >
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <AdoptedPetContext.Provider value={adoptedPetHook}>
