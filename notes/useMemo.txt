@@ -1,0 +1,6 @@
+useMemo() notes
+
+The syntax is similar to useEffect()
+    useMemo(() => expensiveMathOperation(count), [count]);
+We're telling the function to only get operated when [count] is changed, plus it'll cache the function
+calls, because memoizing functions is what this does!
