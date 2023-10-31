@@ -1,0 +1,38 @@
+useRef() notes
+
+We use useRef to REFERENCE the same object once more. If we did === to test equality, it would return true.
+Mainly used to not have to re-render a component.
+
+Benefits:
+- performance
+- wrong/bad to re-render
+
+Best Practice Note: don't try and solve the issue until you HAVE the problem
+    ie. don't try and optimize performance if it isn't an issue
+
+Using memo(useRef) is the correct way??? not sure atm
+-----------------------------------------------------------------------------
+Memoizing functions (https://www.freecodecamp.org/news/understanding-memoize-in-javascript-51d07d19430e/)
+
+Memoization is a way to optimize your function calls. It stores the results of expensive function calls
+and returns the cached result when the same inputs occur again. Also known as "memorizing" for the comp.
+Memoized functions must be PURE!!! A pure function always returns the same output no matter how many
+times it's called. It is predictable in that sense and it allows for the cache to work with absolute
+certainty.
+
+Memoizing with recursion is a bit trickier. You have to memoize the recursive function so that way when
+it calls itself, it calls the memoized version of the recursive function. This SIGNIFICANTLY improves
+performance because each time, the memoized recursive function will cache each of the recursive calls,
+thereby allowing the code to be supppperrrr speed
+
+TLDR: Memoization === caching return values of functions
+
+Cons:
+- Trade-off between memory space used vs. speed: imagine if your function has unLIMITED inputs; you're
+  gonna be paying for that memory space T_T
+- Only on pure functions
+
+Note: API calls don't have to be cached bc HTTP caching is done by the browser automatically
+
+Best use case: heavy computational functions that can significantly improve performance
+  ie. fibonacci and factorial
