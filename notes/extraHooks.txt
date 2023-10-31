@@ -1,0 +1,9 @@
+useImperativeHandle is for when the child of a component needs to [pass information back to the parent.
+
+useDebugValue is for when people make custom hooks and use a debug value to log out a value associated
+with the custom hook so you know.
+
+useInsertionEffect is usually for libraries and this happens BEFORE RENDER.
+
+Pretty much all of these are use case types. These solve very NICHE problems that Meta AKA Facebook
+has encountered.
