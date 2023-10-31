@@ -1,0 +1,11 @@
+useCallback() notes
+
+It uses the useRef() example we saw before with the rotating cube. We import it in, re-use the code
+from the red dot moving left and right to see how smoothly it runs??? A little unsure atm.
+
+Memoization only has to do with props that are passed to the component from its parent.
+
+The component that you're using for useCallback MUST BE wrapped in memo in its original definition.
+By using useCallback and useRef, we avoid having to render the component over and over again. With
+useRef, that stops the component itself from re-rendering, unless its state changes. With useCallback,
+the component will cache the function definition between re-renders, making it speeeedy.
