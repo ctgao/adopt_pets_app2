@@ -14,6 +14,7 @@
 @layer base {
   body {
     font-family: cursive;
+    background-image: url(http://pets-images.dev-apis.com/pets/wallpaperB.jpg);
   }
 }
 

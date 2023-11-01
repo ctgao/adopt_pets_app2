@@ -24,8 +24,8 @@ const Details = () => {
 
   if (results.isLoading) {
     return (
-      <div className="loading-pane">
-        <h2 className="loader">waiting</h2>
+      <div className="flex items-center justify-center p-4">
+        <h2 className="m-0 animate-spin p-0 text-8xl">waiting</h2>
       </div>
     );
   }
@@ -33,15 +33,15 @@ const Details = () => {
   const pet = results.data.pets[0];
 
   return (
-    <div className="details">
+    <div className="my-0 mx-auto mb-6 w-9/12 rounded-md bg-red-50 p-4 pt-0 shadow-lg">
       <Carousel images={pet.images} />
       <div>
-        <h1>{pet.name}</h1>
-        <h2>
+        <h1 className="my-5 mx-0 text-center text-6xl">{pet.name}</h1>
+        <h2 className="mx-0 mt-1 mb-5 text-center">
           {pet.animal} - {pet.breed} - {pet.city} - {pet.state}
         </h2>
         <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
-        <p>{pet.description}</p>
+        <p className="py-0 px-4 leading-normal">{pet.description}</p>
         {showModal ? (
           <Modal>
             <div>
