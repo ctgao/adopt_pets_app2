@@ -1,3 +1,30 @@
 @tailwind base;
+/* base layer: body, ordered list, text indent, etc. */
 @tailwind components;
+/* component layer: special form, title, React Component */
 @tailwind utilities;
+/* MOST specific. active, not active? */
+/* from MOST specific to LEAST specific, that is the priority order when there are conflicts */
+
+/* We could be writing CSS in here - tailwind is not going to yell at us for doing so. However, by doing
+ * so, we kinda just overwrote the usefulness of tailwind? Like you're just writing CSS again, which
+ * was what we wanted to AVOID by using tailwind */
+
+/* These are kinda like our customized plugins for tailwind - augmenting the layers that already exist */
+@layer base {
+  body {
+    font-family: cursive;
+  }
+}
+
+@layer components {
+  .search-input {
+    @apply w-60 mb-5 block;
+  }
+}
+
+@layer utilities {
+  .grayed-out-disabled {
+    @apply disabled:opacity-50;
+  }
+}

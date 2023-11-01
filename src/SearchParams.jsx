@@ -28,8 +28,9 @@ const SearchParams = () => {
   // with uncontrolled forms, you NEED to have a name
   // that is the ONLY WAY that FormData is able to find the necessary data to extract
   return (
-    <div className="search-params">
+    <div className="my-0 mx-auto w-11/12">
       <form
+        className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
@@ -49,7 +50,13 @@ const SearchParams = () => {
 
         <label htmlFor="location">
           Location
-          <input id="location" name="location" placeholder="Location" />
+          <input
+            type="text"
+            id="location"
+            name="location"
+            className="search-input"
+            placeholder="Location"
+          />
         </label>
 
         <label htmlFor="animal">
@@ -58,6 +65,7 @@ const SearchParams = () => {
             id="animal"
             name="animal"
             value={animal}
+            className="search-input"
             onChange={(e) => {
               setAnimal(e.target.value);
             }}
@@ -76,6 +84,7 @@ const SearchParams = () => {
             id="breed"
             name="breed"
             disabled={breeeeeeds.length === 0}
+            className="search-input grayed-out-disabled"
             placeholder="Breed"
           >
             <option />
@@ -85,7 +94,9 @@ const SearchParams = () => {
           </select>
         </label>
 
-        <button>Submit</button>
+        <button className="rounded border-none bg-purple-400 px-6 py-2 text-white hover:opacity-50 text-2xl">
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </div>
