@@ -18,10 +18,10 @@ class Carousel extends Component {
   render() {
     const { active } = this.state;
     const { images } = this.props;
-    const smImgStyle = "m-2 inline-block h-24 w-24 cursor-pointer rounded-full border-2 border-gray-800";
+    const smImgStyle = "m-2 inline-block h-24 w-24 cursor-pointer rounded-full border-2 border-stone-800";
 
     return (
-      <div className="flex h-96 items-center justify-around">
+      <div className="flex h-auto pt-5 items-center justify-around">
         <img
           className="max-h-80 max-w-3xl"
           src={images[active]}

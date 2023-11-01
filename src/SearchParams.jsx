@@ -94,7 +94,7 @@ const SearchParams = () => {
           </select>
         </label>
 
-        <button className="rounded border-none bg-purple-400 px-6 py-2 text-white hover:opacity-50 text-2xl">
+        <button className="rounded border border-slate-700 bg-fuchsia-400 px-6 py-2 text-2xl leading-none text-white hover:opacity-50">
           Submit
         </button>
       </form>

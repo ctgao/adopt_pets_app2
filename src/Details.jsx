@@ -33,14 +33,19 @@ const Details = () => {
   const pet = results.data.pets[0];
 
   return (
-    <div className="my-0 mx-auto mb-6 w-9/12 rounded-md bg-red-50 p-4 pt-0 shadow-lg">
+    <div className="my-0 mx-auto mb-6 w-9/12 rounded-md bg-rose-50 p-4 pt-0 shadow-lg">
       <Carousel images={pet.images} />
-      <div>
-        <h1 className="my-5 mx-0 text-center text-6xl">{pet.name}</h1>
-        <h2 className="mx-0 mt-1 mb-5 text-center">
+      <div className="mx-0 my-2">
+        <h1 className="text-center text-6xl text-stone-800">{pet.name}</h1>
+        <h2 className="text-center">
           {pet.animal} - {pet.breed} - {pet.city} - {pet.state}
         </h2>
-        <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
+        <button
+          className="mx-auto mb-4 block cursor-pointer rounded border border-slate-700 bg-fuchsia-400 px-6 py-1 leading-none text-white hover:opacity-50"
+          onClick={() => setShowModal(true)}
+        >
+          Adopt {pet.name}
+        </button>
         <p className="py-0 px-4 leading-normal">{pet.description}</p>
         {showModal ? (
           <Modal>
@@ -65,9 +70,6 @@ const Details = () => {
   );
 };
 
-// usage of {...props} is okay in this case! Why?
-// Well in this case, the ErrorBoundary doesn't care about what these props are,
-// they just need to be passed along to the details page
 function DetailsErrorBoundary(props) {
   return (
     <ErrorBoundary>
@@ -75,9 +77,5 @@ function DetailsErrorBoundary(props) {
     </ErrorBoundary>
   );
 }
-
-// why do we put this here? WELL!!! Error Boundary only catches the errors of the components WITHIN it
-// therefore, if we were to wrap the Details component in its render function, it would not catch
-// all the OTHER potential errors of the Details component.
 
 export default DetailsErrorBoundary;
