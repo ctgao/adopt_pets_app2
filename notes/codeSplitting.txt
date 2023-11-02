@@ -10,9 +10,9 @@ First thing we did was in App.jsx. Importing at the top takes your whole code an
 file, whether or not that module gets loaded in or used. By using lazy (from React), we can "panik" import
 these React components ONLY when the user navigates to them.
 
-Suspense is going to be inside of QueryClientProvider, but outside of the custom AdoptedPetContext.Provider.
-This gives us a fallback in the case that we aren't able to load our modules in time. It essentially acts
-like a buffer page so the user doesn't have to see the final page until it's LOADED in.
+Suspense is going to be inside of the two Providers. This gives us a fallback in the case that we aren't
+able to load our modules in time. It essentially acts like a buffer page so the user doesn't have to see
+the final page until it's LOADED in.
 
 Code splitting is just that simple.
 
