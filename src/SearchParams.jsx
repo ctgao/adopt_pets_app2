@@ -32,7 +32,7 @@ const SearchParams = () => {
   return (
     <div className="my-0 mx-auto flex w-11/12 flex-row">
       <form
-        className="mb-10 mr-5 flex h-fit w-96 flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
+        className="mb-10 mr-5 flex h-fit w-96 flex-col items-center justify-center rounded-lg bg-purple-100 p-10 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);

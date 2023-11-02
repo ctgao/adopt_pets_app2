@@ -5,8 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import fetchPet from "./fetchPet";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
-import Modal from "./Modal";
 import AdoptedPetContext from "./AdoptedPetContext";
+import Modal from "./Modal";
+
+// this is using the code splitting method
+// this method is WORSE in this current state bc Modal is quite small and doesn't impact performance
+// const Modal = lazy(() => import("./Modal"));
 
 // can't await in a render function, it cannot be async
 const Details = () => {
