@@ -11,3 +11,9 @@ Can't do DOM stuff in Node.js! Therefore we use StaticRoute -> a Router that can
 renderToPipeableStream() allows us to send over pieces of info as they're render ready.
 
 Problem is: Node.js can't ready JSX files. That's why we have to do it like this?
+
+NEW NOTES: We did it the JANKY way, but there is a legit way to do this.
+Imagine if when we load the page, EVERYTHING gets loaded in at once. We can DO THAT with server side rendering.
+This is particularly useful in cases where a "round-trip" AKA trying to load this webpage on somewhere far,
+far away like Mars, when you refresh the page, you don't have to re-fetch. You'd essentially pull from a cache
+to get all the pets. This would send the request in GIANT payload.
