@@ -28,9 +28,9 @@ const SearchParams = () => {
   // with uncontrolled forms, you NEED to have a name
   // that is the ONLY WAY that FormData is able to find the necessary data to extract
   return (
-    <div className="my-0 mx-auto w-11/12">
+    <div className="my-0 mx-auto w-11/12 flex flex-row">
       <form
-        className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
+        className="mb-10 flex w-96 h-fit flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
@@ -44,7 +44,11 @@ const SearchParams = () => {
       >
         {adoptedPet ? (
           <div className="mb-3 ml-5 mr-2.5 h-60 w-60">
-            <img className="rounded-full" src={adoptedPet.images[0]} alt={adoptedPet.name} />
+            <img
+              className="rounded-full"
+              src={adoptedPet.images[0]}
+              alt={adoptedPet.name}
+            />
           </div>
         ) : null}
 

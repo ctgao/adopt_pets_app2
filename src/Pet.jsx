@@ -7,11 +7,11 @@ const Pet = ({ name, animal, breed, images, location, id }) => {
   }
 
   return (
-    <Link to={`details/${id}`} className="relative block">
+    <Link to={`details/${id}`} className="relative block h-fit">
       <div className="float-left my-0 ml-5 mr-2.5">
         <img src={hero} alt={name} />
       </div>
-      <div className="absolute bottom-0 left-5 bg-gradient-to-tr from-white to-transparent pr-2 pt-2 pl-1.5">
+      <div className="absolute bottom-0 left-5 bg-gradient-to-tr from-white to-transparent pr-2 pt-1 pl-1.5 pb-0.5">
         <h1>{name}</h1>
         <h2>
           {animal} - {breed} - {location}
