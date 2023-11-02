@@ -49,11 +49,11 @@ const Details = () => {
         <p className="py-0 px-4 leading-normal">{pet.description}</p>
         {showModal ? (
           <Modal>
-            <div className="max-w-lg border-8 bg-white p-4 text-center">
-              <h1>Would you like to adopt {pet.name}?</h1>
-              <div className="buttons">
+            <div className="relative top-1/4 max-h-24 max-w-lg rounded-xl bg-white p-4 text-center">
+              <h1 className="mb-2">Would you like to adopt {pet.name}?</h1>
+              <div className="space-x-3">
                 <button
-                  className="mx-auto mb-4 block cursor-pointer rounded border border-slate-700 bg-fuchsia-400 px-6 py-1 leading-none text-white hover:opacity-50"
+                  className="inline-block cursor-pointer rounded border border-slate-700 bg-fuchsia-400 px-6 py-1 leading-none text-white hover:opacity-70"
                   onClick={() => {
                     setAdoptedPet(pet);
                     navigate("/");
@@ -62,7 +62,7 @@ const Details = () => {
                   Yes
                 </button>
                 <button
-                  className="mx-auto mb-4 block cursor-pointer rounded border border-slate-700 bg-fuchsia-400 px-6 py-1 leading-none text-white hover:opacity-50"
+                  className="inline-block cursor-pointer rounded border border-slate-700 bg-fuchsia-400 px-6 py-1 leading-none text-white hover:opacity-70"
                   onClick={() => setShowModal(false)}
                 >
                   No

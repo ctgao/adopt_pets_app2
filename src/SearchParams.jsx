@@ -43,8 +43,8 @@ const SearchParams = () => {
         }}
       >
         {adoptedPet ? (
-          <div className="pet image-container">
-            <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+          <div className="mb-3 ml-5 mr-2.5 h-60 w-60">
+            <img className="rounded-full" src={adoptedPet.images[0]} alt={adoptedPet.name} />
           </div>
         ) : null}
 
