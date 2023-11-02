@@ -1,5 +1,6 @@
 import { useState, lazy, Suspense } from "react";
-import { Link, Routes, Route } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import AdoptedPetContext from "./AdoptedPetContext";
@@ -27,7 +28,7 @@ const App = () => {
         background: "url(http://pets-images.dev-apis.com/pets/wallpaperB.jpg)",
       }}
     >
-      <AdoptedPetContext.Provider value={adoptedPetHook}>
+      <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <Suspense
             fallback={
@@ -36,23 +37,26 @@ const App = () => {
               </div>
             }
           >
-            <header className="mb-6 w-full bg-gradient-to-br from-pink-300 via-purple-300 to-blue-300 p-6 text-center">
-              <Link
-                className="text-5xl text-white hover:text-gray-200"
-                to={"/"}
-              >
-                Adopt Me Please!
-              </Link>
-            </header>
-            <Routes>
-              <Route index element={<SearchParams />} />
-              <Route path="/details/:id" element={<Details />} />
-            </Routes>
+            <AdoptedPetContext.Provider value={adoptedPetHook}>
+              <header className="mb-6 w-full bg-gradient-to-br from-pink-300 via-purple-300 to-blue-300 p-6 text-center">
+                <Link
+                  className="text-5xl text-white hover:text-gray-200"
+                  to={"/"}
+                >
+                  Adopt Me Please!
+                </Link>
+              </header>
+              <Routes>
+                <Route index element={<SearchParams />} />
+                <Route path="/details/:id" element={<Details />} />
+              </Routes>
+            </AdoptedPetContext.Provider>
           </Suspense>
         </QueryClientProvider>
-      </AdoptedPetContext.Provider>
+      </BrowserRouter>
     </div>
   );
 };
-
-export default App;
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<App />);
