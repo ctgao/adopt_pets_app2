@@ -36,12 +36,12 @@ const Details = () => {
     <div className="my-0 mx-auto mb-6 w-9/12 rounded-md bg-rose-50 p-4 pt-0 shadow-lg">
       <Carousel images={pet.images} />
       <div className="mx-0 my-2">
-        <h1 className="text-center text-6xl text-stone-800">{pet.name}</h1>
-        <h2 className="text-center">
+        <h1 className="mb-4 text-center text-6xl text-stone-800">{pet.name}</h1>
+        <h2 className="mb-1 text-center">
           {pet.animal} - {pet.breed} - {pet.city} - {pet.state}
         </h2>
         <button
-          className="mx-auto mb-4 block cursor-pointer rounded border border-slate-700 bg-fuchsia-400 px-6 py-1 leading-none text-white hover:opacity-50"
+          className="mx-auto mb-4 block cursor-pointer rounded border border-slate-700 bg-fuchsia-400 px-6 py-1 text-xl leading-none text-white hover:opacity-50"
           onClick={() => setShowModal(true)}
         >
           Adopt {pet.name}
