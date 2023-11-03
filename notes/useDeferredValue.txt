@@ -1,0 +1,21 @@
+useDeferredValue() notes
+
+This is made to solve a performance issue. This is a FACEBOOK issue, not really applicable to the regular
+developer. But it's also nice to know.
+
+Facebook has lots of "islands" of things going on - there are ads, news feeds, etc. Users need IMMEDIATE
+feedback because we're picky and we need responsive apps. Facebook wants to speed up loading times by
+loading a ton of things in the background. High priority rendering vs. low priority means that we will
+prioritize that that rendering and if something happens, we drop the low priority stuff.
+
+Our previous optimization issues were mainly trying to push high priority stuff part up. What we're doing now,
+is we're selecting our low priority things and pushing them BACK.
+
+We're gonna modify Search Params! Under pets (our API call), we create a deferred version of that variable
+with useDeferredValue(pets). Then we memoize the render function that returns Results with deferredPets!
+Then we use the renderedPets const var function instead of the regular pet Results component.
+
+What's happening? useDeferredValue is telling React that this is a low-priority rendering component. The real
+value will be given to you ONLY ONCE we need new values and a new render. Memo-izing is storing the rendered
+component. That means the output of the function will first be the cached value, and THEN it'll do a re-fetch
+if it needs to.
