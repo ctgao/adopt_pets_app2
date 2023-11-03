@@ -1,0 +1,15 @@
+useTransition() notes
+
+What this is supposed to do is give you a buffer while the content is loading. When we click a button, we
+don't want to allow the user to click the "Submit" button multiple times (could break our App if done in
+quick succession) and we want them to see that we're loading their content in soon enough.
+
+This is low-priority AND it shows an intermediary so the user knows that the webpage is responsive.
+
+In the example we did with our code, it doesn't really work because requestParams is not a state that when
+change happens, must get re-rendered. Therefore, useTransition function isn't able to do anything because
+there's nothing to re-render.
+
+NOW HERE'S THE DIFFERENCE!!!
+useTransition function is more for when you KNOW something new is going to be heavy and therefore low-priority.
+useDeferredValue function is for when you JUST received something and you're saying "take your time rendering".

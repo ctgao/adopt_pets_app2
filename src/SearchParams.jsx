@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useTransition } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import useBreedList from "./useBreedList";
@@ -19,6 +19,7 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [adoptedPet, _] = useContext(AdoptedPetContext);
+  const [isPending, startTransition] = useTransition();
 
   const [breeeeeeds] = useBreedList(animal);
   const results = useQuery(["search", requestParams, pageNum], fetchSearch);
@@ -41,8 +42,11 @@ const SearchParams = () => {
             breed: formData.get("breed") ?? "",
             location: formData.get("location") ?? "",
           };
-          setRequestParams(obj);
-          setPageNum(0);
+          // whatever is in this next function is considered LOW priority
+          startTransition(() => {
+            setPageNum(0);
+            setRequestParams(obj);
+          });
         }}
       >
         {adoptedPet ? (
@@ -101,13 +105,19 @@ const SearchParams = () => {
           </select>
         </label>
 
-        <button className="rounded border border-slate-700 bg-fuchsia-400 px-6 py-2 text-2xl leading-none text-white hover:opacity-50">
-          Submit
-        </button>
+        {isPending ? (
+          <div className="flex items-center justify-center p-4 h-9">
+            <h2 className="text-4xl">pending</h2>
+          </div>
+        ) : (
+          <button className="rounded border border-slate-700 bg-fuchsia-400 px-6 py-2 text-2xl leading-none text-white hover:opacity-50">
+            Submit
+          </button>
+        )}
       </form>
       <div>
         <Results pets={pets} />
-        <div className="mt-10 flex flex-row justify-center space-x-20 text-5xl">
+        <div className="my-10 flex flex-row justify-center space-x-20 text-5xl">
           <button
             className="rounded-2xl bg-fuchsia-400 pt-1.5 pb-2.5 pl-2 pr-3 text-white hover:opacity-90"
             onClick={() => {
@@ -116,10 +126,12 @@ const SearchParams = () => {
           >
             ◀
           </button>
-          <button className="rounded-2xl bg-fuchsia-400 pt-1.5 pb-2.5 pr-2 pl-3 text-white hover:opacity-90"
+          <button
+            className="rounded-2xl bg-fuchsia-400 pt-1.5 pb-2.5 pr-2 pl-3 text-white hover:opacity-90"
             onClick={() => {
               if (hasNextPage) setPageNum(pageNum + 1);
-            }}>
+            }}
+          >
             ▶
           </button>
         </div>
