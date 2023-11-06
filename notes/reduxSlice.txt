@@ -1,0 +1,9 @@
+What is a slice for Redux Toolkit?
+
+Putting all the reducers and action creators in this bundle together and that is this SLICE concept.
+
+A reducer is a function that takes in an old-state and an action. It performs that action and that generally
+modifies the old-state and returns the new-state.
+
+Whenever you create a reducer, you automatically get an action created for you (by Redux). This is the action
+that gets sent into the reducer to "modify" the old-state.

@@ -1,0 +1,16 @@
+Redux Toolkit simplifies the old Redux.
+
+What is Redux? It is a central store for your data. This stores your info in a centralized location for use
+in your app. Redux Toolkit is a framework around Redux that makes it useful and simplistic.
+
+Redux makes your state changes TESTABLE! Most bugs center around state changes happening where you don't
+expect them. With Redux and Redux Toolkit, anything involving state is now testable and readable, which are
+two VERY IMPORTANT features to good code.
+
+Interestingly: Redux works with angular and other frameworks as well.
+
+Redux is NOT a replacement for setState()!!! setState function is mainly for like one-off states such as
+showModal. Redux is more used for App level states, things like "which user is logged in" or in our case,
+"which pet has been adopted".
+
+It's like a mini-database that's on the browser-side. **NOT A PERFECT ANALOGY** But the idea is there.
