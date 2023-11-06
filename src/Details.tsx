@@ -1,36 +1,36 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 
+import { useGetPetQuery } from "./petApiService";
 import { adopt } from "./adoptedPetSlice";
-import fetchPet from "./fetchPet";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import Modal from "./Modal";
+import { Pet } from "./APIResponsesTypes";
 
 const Details = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   if (!id) {
     throw new Error("Why no ID? I want an ID!!!");
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
+  const { isLoading, data: pet }: { isLoading: boolean; data: Pet } =
+    useGetPetQuery(id);
+
   const navigate = useNavigate();
-  const results = useQuery(["details", id], fetchPet);
   const [showModal, setShowModal] = useState(false);
 
-  const dispatch = useDispatch();
-
-  if (results.isLoading) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center p-4">
         <h2 className="m-0 animate-spin p-0 text-8xl">waiting</h2>
       </div>
     );
   }
-
-  const pet = results?.data?.pets[0];
 
   if (!pet) {
     throw new Error("no pet :(");

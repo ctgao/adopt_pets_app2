@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const petApi = createApi({
   reducerPath: "petApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://pets-v2.dev-api.com" }),
-  endPoints: (builder) => ({
+  baseQuery: fetchBaseQuery({ baseUrl: "http://pets-v2.dev-apis.com" }),
+  endpoints: (builder) => ({
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
     getPet: builder.query({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
