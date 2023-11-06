@@ -14,3 +14,13 @@ showModal. Redux is more used for App level states, things like "which user is l
 "which pet has been adopted".
 
 It's like a mini-database that's on the browser-side. **NOT A PERFECT ANALOGY** But the idea is there.
+
+With store, we need to useDispatch() function. The dispatch function allows us to send actions to the store.
+Since dispatch allows us to change the state, we also need to READ it to display it out to the screen.
+
+useSelector() function is the one that allows us to READ the state from the store. With this function, we're
+subscribing to the output of this function. Whenever the state changes, this value will change, and as a
+result, the component gets re-rendered to the screen.
+
+BEST PRACTICE NOTE: you should ALWAYS useSelector() with the BARE MINIMUM amount of data. Otherwise, you're
+always going to be re-rendering when any state changes happen.

@@ -4,10 +4,10 @@ import { Pet } from "./APIResponsesTypes";
 export const adoptedPetSlice = createSlice({
   name: "adoptedPet",
   initialState: {
-    value: null,
+    value: {} as Pet,
   },
   reducers: {
-    adopt: (state: { value: Pet | null }, action: { payload: Pet }) => {
+    adopt: (state: { value: Pet }, action: { payload: Pet }) => {
       state.value = action.payload;
     },
   },

@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+
 import adoptedPet from "./adoptedPetSlice";
 
 const store = configureStore({
@@ -6,5 +8,8 @@ const store = configureStore({
     adoptedPet,
   },
 });
+
+export type IRootState = ReturnType<typeof store.getState>;
+export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector;
 
 export default store;

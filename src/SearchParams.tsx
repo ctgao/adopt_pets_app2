@@ -1,12 +1,12 @@
-import { useContext, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import useBreedList from "./useBreedList";
 import fetchSearch from "./fetchSearch";
 
 import Results from "./Results";
-import AdoptedPetContext from "./AdoptedPetContext";
 import { Animal } from "./APIResponsesTypes";
+import { useAppSelector } from "./store";
 
 const ANIMALS: Animal[] = ["rabbit", "cat", "dog", "bird", "reptile"];
 
@@ -16,8 +16,8 @@ const SearchParams = () => {
     animal: "" as Animal,
     breed: "",
   });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [adoptedPet, _] = useContext(AdoptedPetContext);
+
+  const adoptedPet = useAppSelector((state) => state.adoptedPet.value);
   const [pageNum, setPageNum] = useState(0);
   // now instead of it being any string possible, we set this constraint such that it'll always be
   // of type animal but initially starts as an empty string
@@ -53,7 +53,7 @@ const SearchParams = () => {
           });
         }}
       >
-        {adoptedPet ? (
+        {adoptedPet?.images ? (
           <div className="mb-3 ml-5 mr-2.5 h-60 w-60">
             <img
               className="rounded-full"
