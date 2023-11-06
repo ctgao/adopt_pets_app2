@@ -8,23 +8,21 @@ import ErrorBoundary from "./ErrorBoundary";
 import AdoptedPetContext from "./AdoptedPetContext";
 import Modal from "./Modal";
 
-// this is using the code splitting method
-// this method is WORSE in this current state bc Modal is quite small and doesn't impact performance
-// const Modal = lazy(() => import("./Modal"));
+import { PetAPIResponse } from "./APIResponsesTypes";
 
-// can't await in a render function, it cannot be async
 const Details = () => {
   const { id } = useParams();
 
-  // the program controls where you go; don't have to create a link to send the user somehwere
+  if (!id) {
+    throw new Error("Why no ID? I want an ID!!!");
+  }
+
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-var
   const [_, setAdoptedPet] = useContext(AdoptedPetContext);
 
-  const results = useQuery(["details", id], fetchPet);
+  const results = useQuery<PetAPIResponse>(["details", id], fetchPet);
   const [showModal, setShowModal] = useState(false);
-  // placing the modal HERE in details is great because then we can just use the pet information
-  // that already exists in the details component and send it along to the modal and CUSTOMIZE it
 
   if (results.isLoading) {
     return (
@@ -34,7 +32,11 @@ const Details = () => {
     );
   }
 
-  const pet = results.data.pets[0];
+  const pet = results?.data?.pets[0];
+
+  if (!pet) {
+    throw new Error("no pet :(");
+  }
 
   return (
     <div className="my-0 mx-auto mb-6 w-9/12 rounded-md bg-rose-50 p-4 pt-0 shadow-lg">
@@ -80,10 +82,13 @@ const Details = () => {
   );
 };
 
-function DetailsErrorBoundary(props) {
+// since there are no props being passed down, we can just remove that.
+// but it's good practice to keep the props being passed through the Specific ErrorBoundary to the
+// the component inside
+function DetailsErrorBoundary() {
   return (
     <ErrorBoundary>
-      <Details {...props} />
+      <Details />
     </ErrorBoundary>
   );
 }

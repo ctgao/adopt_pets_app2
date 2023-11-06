@@ -13,3 +13,10 @@ If you're using ESLint, you also have to get the typescript plugin so it can rec
 "plugin:@typescript-eslint/recommended-requiring-type-checking" This plugin REQUIRES ALL TYPE CHECKING!
 This is good to add at the end of completing your project so that the people who pick up your work have to
 enforce type checking as well.
+
+Typically, people will categorize their types into a separate file that they can import as needed. This is
+especially useful when you have repeated types or just want to categorize your types by how they're output
+(ie: API Response Types).
+
+Typescript will enforce that the types within the javascript/typescript code. However, your APIs can be
+broken and crash the website due to type mismatch.
