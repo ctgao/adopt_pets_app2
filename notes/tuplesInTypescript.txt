@@ -1,0 +1,35 @@
+What are Tuples?
+
+A tuple is a typed array with a pre-defined length and types for each value. In tuples, each element in the
+array is of a singular KNOWN type. This forces the types to be defined in a specific order, as ordained by
+the tuple type. They have to be a defined-length otherwise we can't predict their outcomes!
+
+A COMMON REACT TUPLE EXAMPLE!
+const [counter, setCounter] = useState(0);
+What's after the const is a tuple. useState(...) always returns a tuple of the initial state, as specified
+in the parameters of useState, and a setter function for that state variable. Two different types, a known
+tuple size of 2.
+
+There are two types of tuples: named and unnamed.
+Named looks like this: [x: number, y: number].
+Unnamed looks like this: [number, string, boolean].
+
+Named ones allow us to provide context for what each value represents. The named tuple in the example above
+can represent coordinates and will let us know that we're only dealing with 2D coordinates, of which both
+values are NUMBERS ONLY!
+
+What is often done with tuples is something called "destructuring". When destructuring arrays (or tuples
+since they're like a specific type of array), the order in which the destructuring happens is important.
+Using the COMMON REACT TUPLE example, if we were to use 'const [setCounter, counter] = ...' instead, then
+setCounter would be the initial state and counter would be the setter function. ORDER IS IMPORTANT!!!
+If you only wish to keep some of the values, you can just leave blanks or _ to denote that you're tossing
+the return value of this element at that array location away.
+
+We can also use destructuring with objects! With objects, the order doesn't matter as in JSONs, we always
+have a string key associated with a value. In that sense, it's more like a Java map and when destructuring,
+Javascript will naturally infer and associate the correct key/value pair with the destructured variable,
+AS LONG as the variable name is the EXACT SAME.
+
+With object destructuring, you can also ignore certain properties you don't need. By simply excluding them
+from the destructuring object notation, you are only including the properties that you find relevant from
+the props passed in. You can also do nested destructures to get inner values.
