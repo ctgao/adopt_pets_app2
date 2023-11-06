@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom";
+import { Animal } from "./APIResponsesTypes";
 
-const Pet = ({ name, animal, breed, images, location, id }) => {
+// keeping this separate from the Pets type we created earlier is good bc not ALL info we get from the
+// API call is going to be used. Passing on unnecessary info is BAD PRACTICE!
+interface IProps {
+  name: string;
+  animal: Animal;
+  breed: string;
+  images: string[];
+  location: string;
+  id: number;
+}
+
+// const Pet: FunctionComponent<IProps> = (props: IProps) => {
+// if you write the code this way, there may be more strict rules that get applied
+const Pet = (props: IProps) => {
+  const { name, animal, breed, images, location, id } = props;
+
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
   if (images.length) {
     hero = images[0];

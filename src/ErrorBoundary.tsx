@@ -1,18 +1,14 @@
-import { Component } from "react";
+// mostly code from reactjs.org/docs/error-boundaries.html
+import { Component, ErrorInfo, ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-// MUST BE PUT AT THE TOP MOST LEVEL!
-// ErrorBoundary can only catch errors that are inside of it
-class ErrorBoundary extends Component {
+class ErrorBoundary extends Component<{ children: ReactElement }> {
   state = { hasError: false };
 
-  // changes the state after the error, so you return what the new state should be
   static getDerivedStateFromError() {
     return { hasError: true };
   }
-
-  componentDidCatch(error, info) {
-    // typically you should log this error out to something like TrackJS or NewRelic
+  componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("ErrorBoundary component caught an error!", error, info);
   }
 
@@ -25,7 +21,6 @@ class ErrorBoundary extends Component {
       );
     }
 
-    // YOU HAVE TO RETURN SOMETHING!!! Otherwise the render breaks and nothing EVER gets rendered
     return this.props.children;
   }
 }

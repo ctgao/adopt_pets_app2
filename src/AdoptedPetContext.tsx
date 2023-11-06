@@ -9,7 +9,7 @@ const AdoptedPetContext = createContext<[Pet, (adoptedPet: Pet) => void]>([
     name: "Peppy",
     animal: "dog",
     description: "Asta's puppy! But Arlan is taking care of them",
-    breed: "",
+    breed: "White Pomeranian",
     images: [],
     city: "Master Control Zone",
     state: "Herta's Space Station",
