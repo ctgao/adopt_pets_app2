@@ -18,7 +18,7 @@ const Details = () => {
   }
 
   const navigate = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-unused-var
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setAdoptedPet] = useContext(AdoptedPetContext);
 
   const results = useQuery<PetAPIResponse>(["details", id], fetchPet);

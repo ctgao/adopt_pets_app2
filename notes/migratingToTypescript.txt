@@ -20,3 +20,6 @@ especially useful when you have repeated types or just want to categorize your t
 
 Typescript will enforce that the types within the javascript/typescript code. However, your APIs can be
 broken and crash the website due to type mismatch.
+
+Typescript is great in the areas where your API doesn't give you well-formed data. It forces you to be more
+defensive and therefore more RESILIENT!!!
