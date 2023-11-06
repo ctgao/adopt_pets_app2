@@ -9,6 +9,8 @@
     "forceConsistentCasingInFileNames": true,
     // strict mode is good when you're migrating an app to typescript
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowJs": true,
+    // doing this so my api service can get included bc types are hard :(
   }
 }

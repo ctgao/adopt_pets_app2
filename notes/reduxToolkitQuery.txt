@@ -1,0 +1,9 @@
+There's React Query, what we've been using before to do our queries (API calls). Redux Toolkit has their own
+version of this. Brian Holt's recommendation is that if you're gonna use Redux Toolkit, go HARD and use the
+Redux Toolkit Query as well!
+
+Notes: The types here are CONFUSING AF!!! I refuse using Typescript and the RTK Query stuff for now because
+I really don't think I have sufficient information and understanding of this.
+
+We don't have to do this, but we put a middleware in (just the default middleware is fine), this will help
+us cache all of our api responses. It does exactly what React Query was doing with the caching as well.
