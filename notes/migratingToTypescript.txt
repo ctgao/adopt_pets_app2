@@ -1,0 +1,15 @@
+If you're trying to write typescript, you have to INCLUDE TYPES!!! Since React is written in JavaScript.
+Some IDEs, like VSCode (I think IntelliJ does this too) will run Typescript on your Javascript code
+naturally. However, if you hover over non-library code (aka stuff we've written), then you'll notice a
+distinct lack of types. Since we didn't specify types, then most of the stuff shows up as just 'any' type.
+
+When modifying existing Javascript over to Typescript, often times you'll see type-checking if-statements.
+This helps Typescript narrow down the types that variables can be so we can ensure our code is SAFE!!!
+
+How to decide what files to migrate over? Choose LEAF nodes!!! 'Typing' Modal is good since it depends
+on nothing else. Once you're done, you're DONE!!! Doesn't really matter how you migrate, it's just choice.
+
+If you're using ESLint, you also have to get the typescript plugin so it can recognize all the : colons.
+"plugin:@typescript-eslint/recommended-requiring-type-checking" This plugin REQUIRES ALL TYPE CHECKING!
+This is good to add at the end of completing your project so that the people who pick up your work have to
+enforce type checking as well.

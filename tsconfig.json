@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    // strict mode is good when you're migrating an app to typescript
     "strict": true,
     "skipLibCheck": true
   }
