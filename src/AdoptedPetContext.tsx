@@ -3,7 +3,9 @@ import { Pet } from "./APIResponsesTypes";
 
 // typescript will need for you to have a default value, but right now we don't need one
 // haha we're on typescript now so that above comment came true!
-const AdoptedPetContext = createContext<[Pet | null, (adoptedPet: Pet) => void]>([
+const AdoptedPetContext = createContext<
+  [Pet | null, (adoptedPet: Pet) => void]
+>([
   {
     id: 1827,
     name: "Peppy",

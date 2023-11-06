@@ -9,15 +9,15 @@ const Modal = ({ children }: { children: ReactElement }) => {
 
   useEffect(() => {
     const modalRoot = document.getElementById("modal");
-    if(!modalRoot || !elRef.current){
+    if (!modalRoot || !elRef.current) {
       // writing this in is forcing modalRoot to not be null AND elRef.current is also not NULL
       return;
     }
     modalRoot.appendChild(elRef.current);
     return () => {
       // if there's a elRef.current, then REMOVE IT!!! can't remove what you don't have
-      if(elRef.current) modalRoot.removeChild(elRef.current);
-    }
+      if (elRef.current) modalRoot.removeChild(elRef.current);
+    };
   }, []);
 
   return createPortal(
