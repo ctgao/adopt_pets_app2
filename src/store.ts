@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 import adoptedPet from "./adoptedPetSlice";
+import searchParams from "./searchParamsSlice";
 
 const store = configureStore({
   reducer: {
     adoptedPet,
+    searchParams,
   },
 });
 

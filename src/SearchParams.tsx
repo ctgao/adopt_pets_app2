@@ -1,26 +1,24 @@
 import { useState, useTransition } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
 
 import useBreedList from "./useBreedList";
 import fetchSearch from "./fetchSearch";
 
 import Results from "./Results";
 import { Animal } from "./APIResponsesTypes";
+import { all } from "./searchParamsSlice";
 import { useAppSelector } from "./store";
 
 const ANIMALS: Animal[] = ["rabbit", "cat", "dog", "bird", "reptile"];
 
 const SearchParams = () => {
-  const [requestParams, setRequestParams] = useState({
-    location: "",
-    animal: "" as Animal,
-    breed: "",
-  });
+  const dispatch = useDispatch();
 
+  const requestParams = useAppSelector((state) => state.searchParams.value);
   const adoptedPet = useAppSelector((state) => state.adoptedPet.value);
+
   const [pageNum, setPageNum] = useState(0);
-  // now instead of it being any string possible, we set this constraint such that it'll always be
-  // of type animal but initially starts as an empty string
   const [animal, setAnimal] = useState("" as Animal);
 
   const [isPending, startTransition] = useTransition();
@@ -49,7 +47,7 @@ const SearchParams = () => {
           // whatever is in this next function is considered LOW priority
           startTransition(() => {
             setPageNum(0);
-            setRequestParams(obj);
+            dispatch(all(obj));
           });
         }}
       >
