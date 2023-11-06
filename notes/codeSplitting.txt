@@ -6,7 +6,7 @@ up. React & Vite work well together to do that.
 
 Think about a SIZE budget for performance for React code.
 
-First thing we did was in App.jsx. Importing at the top takes your whole code and puts it into that compiled
+First thing we did was in App.tsx. Importing at the top takes your whole code and puts it into that compiled
 file, whether or not that module gets loaded in or used. By using lazy (from React), we can "panik" import
 these React components ONLY when the user navigates to them.
 

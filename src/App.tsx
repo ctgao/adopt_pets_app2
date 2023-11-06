@@ -4,6 +4,7 @@ import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import AdoptedPetContext from "./AdoptedPetContext";
+import { Pet } from "./APIResponsesTypes";
 
 // we're gonna load this LATER
 const Details = lazy(() => import("./Details"));
@@ -19,7 +20,7 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  const adoptedPetHook = useState(null);
+  const adoptedPetHook = useState(null as Pet | null);
 
   return (
     <div
@@ -57,6 +58,12 @@ const App = () => {
     </div>
   );
 };
+
 const container = document.getElementById("root");
+
+if (!container) {
+  throw new Error("No container to render to.");
+}
+
 const root = createRoot(container);
 root.render(<App />);

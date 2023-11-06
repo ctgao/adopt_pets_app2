@@ -1,0 +1,16 @@
+When you wanna keep types, you can cast things that are subtypes of a broader type with 'as'.
+EXAMPLE:
+type Painful = "pain" | "more pain" | "a twinge"
+const newPainVar = "" as Painful;
+
+This above 'as' keyword forces the empty string to be as the type Painful, despite it not actually being
+within the set of types. This is called type assertion.
+
+Typescript only allows type assertions where the two types in question have an overlap; it can be MORE
+specific, or LESS specific. This is different from type annotation.
+
+Typical Typescript uses type annotation: let newNumVar: number;
+With type annotation, Typescript will forcibly check types on this line. However, with type assertion, we
+don't check the type on that line except to make sure it's not an illegal type assertion. This can be
+dangerous if you're not careful. Type assertions get removed before compile time, forcing the code to throw
+a runtime error if the assertion does not work as intended.

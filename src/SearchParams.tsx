@@ -6,19 +6,23 @@ import fetchSearch from "./fetchSearch";
 
 import Results from "./Results";
 import AdoptedPetContext from "./AdoptedPetContext";
+import { Animal } from "./APIResponsesTypes";
 
-const ANIMALS = ["rabbit", "cat", "dog", "bird", "reptile"];
+const ANIMALS: Animal[] = ["rabbit", "cat", "dog", "bird", "reptile"];
 
 const SearchParams = () => {
   const [requestParams, setRequestParams] = useState({
     location: "",
-    animal: "",
+    animal: "" as Animal,
     breed: "",
   });
-  const [pageNum, setPageNum] = useState(0);
-  const [animal, setAnimal] = useState("");
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [adoptedPet, _] = useContext(AdoptedPetContext);
+  const [pageNum, setPageNum] = useState(0);
+  // now instead of it being any string possible, we set this constraint such that it'll always be
+  // of type animal but initially starts as an empty string
+  const [animal, setAnimal] = useState("" as Animal);
+
   const [isPending, startTransition] = useTransition();
 
   const [breeeeeeds] = useBreedList(animal);
@@ -26,21 +30,21 @@ const SearchParams = () => {
   const pets = results?.data?.pets ?? [];
   const hasNextPage = results?.data?.hasNext ?? false;
 
-  // this is an example of an UNCONTROLLED FORM
-  // this is built into HTML Forms/Javascript
-  // with uncontrolled forms, you NEED to have a name
-  // that is the ONLY WAY that FormData is able to find the necessary data to extract
   return (
     <div className="my-0 mx-auto flex w-11/12 flex-row">
       <form
         className="mb-10 mr-5 flex h-fit w-96 flex-col items-center justify-center rounded-lg bg-purple-100 p-10 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
-          const formData = new FormData(e.target);
+          // on these events, we're not ACTUALLY guarantee that target is defined (despite the fact that
+          // it always is???). currentTarget IS guarantee tho. In our code, currentTarget and target return
+          // the same things
+          const formData = new FormData(e.currentTarget);
           const obj = {
-            animal: formData.get("animal") ?? "",
-            breed: formData.get("breed") ?? "",
-            location: formData.get("location") ?? "",
+            animal:
+              (formData.get("animal")?.toString() as Animal) ?? ("" as Animal),
+            breed: formData.get("breed")?.toString() ?? "",
+            location: formData.get("location")?.toString() ?? "",
           };
           // whatever is in this next function is considered LOW priority
           startTransition(() => {
@@ -78,7 +82,10 @@ const SearchParams = () => {
             value={animal}
             className="search-input"
             onChange={(e) => {
-              setAnimal(e.target.value);
+              setAnimal(e.target.value as Animal);
+            }}
+            onBlur={(e) => {
+              setAnimal(e.target.value as Animal);
             }}
             placeholder="Animal"
           >
@@ -106,7 +113,7 @@ const SearchParams = () => {
         </label>
 
         {isPending ? (
-          <div className="flex items-center justify-center p-4 h-9">
+          <div className="flex h-9 items-center justify-center p-4">
             <h2 className="text-4xl">pending</h2>
           </div>
         ) : (
