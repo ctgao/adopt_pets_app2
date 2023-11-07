@@ -1,12 +1,11 @@
 import { useState, useTransition } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 
 import useBreedList from "./useBreedList";
-import fetchSearch from "./fetchSearch";
+import { useSearchQuery } from "./petApiService";
 
 import Results from "./Results";
-import { Animal } from "./APIResponsesTypes";
+import { Animal, Pet } from "./APIResponsesTypes";
 import { all } from "./searchParamsSlice";
 import { useAppSelector } from "./store";
 
@@ -24,9 +23,11 @@ const SearchParams = () => {
   const [isPending, startTransition] = useTransition();
 
   const [breeeeeeds] = useBreedList(animal);
-  const results = useQuery(["search", requestParams, pageNum], fetchSearch);
-  const pets = results?.data?.pets ?? [];
-  const hasNextPage = results?.data?.hasNext ?? false;
+  const { data } = useSearchQuery({ ...requestParams, page: pageNum });
+
+  let pets = [] as Pet[];
+  let hasNextPage = false;
+  if (data) ({ pets, hasNextPage } = data);
 
   return (
     <div className="my-0 mx-auto flex w-11/12 flex-row">

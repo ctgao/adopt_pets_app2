@@ -1,17 +1,13 @@
-import { QueryStatus, useQuery } from "@tanstack/react-query";
-import fetchBreedList from "./fetchBreedList";
+import { useGetBreedsQuery } from "./petApiService";
 import { Animal } from "./APIResponsesTypes";
 
 export default function useBreedList(animal: Animal) {
-  const results = useQuery(["breeds", animal], fetchBreedList);
+  const { data: breeds, isLoading }: { data?: string[]; isLoading: boolean } =
+    // what we're doing here is using this "skip" property to tell our function to not run this query
+    // when the condition isn't met, thereby saving tons of time
+    useGetBreedsQuery(animal, { skip: !animal });
 
-  // if i don't have results yet, give me an empty array
-  // OTHERWISE give me the data like so
-  return [results?.data?.breeds ?? [], results.status] as [
-    string[],
-    QueryStatus
-  ];
-  // before we added this, useBreedList could potentially return EITHER an array of breeds OR an array of
-  // statuses. This is not what we want!!!
-  // this is specifically a tuple where the first value is a string array, the second is a status
+  if (!animal) return [[], "loaded"] as [string[], string];
+
+  return [breeds ?? [], isLoading ? "loading" : "loaded"] as [string[], string];
 }
