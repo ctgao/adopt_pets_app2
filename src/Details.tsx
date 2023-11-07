@@ -17,7 +17,6 @@ const Details = () => {
     throw new Error("Why no ID? I want an ID!!!");
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
   const { isLoading, data: pet }: { isLoading: boolean; data?: Pet } =
     useGetPetQuery(id);
 
@@ -81,7 +80,7 @@ const Details = () => {
 };
 
 // since there are no props being passed down, we can just remove that.
-// but it's good practice to keep the props being passed through the Specific ErrorBoundary to the
+// but it's good practice to keep the props being passed through the Specific ErrorBoundary to
 // the component inside
 function DetailsErrorBoundary() {
   return (

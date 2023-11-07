@@ -3,7 +3,19 @@ version of this. Brian Holt's recommendation is that if you're gonna use Redux T
 Redux Toolkit Query as well!
 
 Notes: The types here are CONFUSING AF!!! I refuse using Typescript and the RTK Query stuff for now because
-I really don't think I have sufficient information and understanding of this.
+I really don't think I have sufficient information and understanding of this. *********
+FOLLOW UP!!! Now with a fresh brain, I have realized, most Types that we have to supply are mostly for small
+tidbits here and there. I was encountering a lot of issues that I thought was due to Typescript, but were
+actually due to misspellings and the like. The API URL was spelled wrong (oops), endpoints was camel case
+even though it should've been all lowercase, and then the function params just didn't have the correct types.
+
+Here are my NEW conclusions:
+- I have a feeling that when typescript uses libraries that are built in (RTX is an example), most of this
+  code is known to be relatively error free and already fully Typed. Therefore, we just have to solve the
+  small errors that pop up every now and then. It usually happens when an => function gets passed in that
+  we created - often times the typescript checker doesn't know what types everything is and whether we have
+  accessing privileges.
+
 
 We don't have to do this, but we put a middleware in (just the default middleware is fine), this will help
 us cache all of our api responses. It does exactly what React Query was doing with the caching as well.
