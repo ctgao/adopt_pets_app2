@@ -18,7 +18,7 @@ const Details = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
-  const { isLoading, data: pet }: { isLoading: boolean; data: Pet } =
+  const { isLoading, data: pet }: { isLoading: boolean; data?: Pet } =
     useGetPetQuery(id);
 
   const navigate = useNavigate();
