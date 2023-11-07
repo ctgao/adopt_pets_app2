@@ -1,0 +1,17 @@
+Try and tell User Stories through your tests.
+EXAMPLE: "I click on button. Does it do what I think it should do?"
+instead of something like "does your hook return the correct value"
+Notes: "If the UI changes, that doesn't mean the website is broken. It just means it changed."
+
+Conventions: for testing there's two different way. We can have a folder with the name __tests__ and Vitest
+will ASSUME that all files in here are tests. We can also write files that mimic our component names. For
+Pet.jsx, we could have Pet.spec.jsx or Pet.test.jsx and these would be effectively the same.
+
+The general outline is like this.
+1. Render the component
+2. Find the thing you're going to be testing
+3. Test to see that it's there and that it is what you expect it to be
+4. Unmount the component
+
+We're using a specific "testid" property on our HTML tags so we let other devs know that this part of our
+component is getting tested.
