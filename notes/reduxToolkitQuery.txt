@@ -19,3 +19,5 @@ Here are my NEW conclusions:
 
 We don't have to do this, but we put a middleware in (just the default middleware is fine), this will help
 us cache all of our api responses. It does exactly what React Query was doing with the caching as well.
+
+One of the best uses of this is how RTK Query easily creates these custom query hooks for you to use.
