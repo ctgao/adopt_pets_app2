@@ -1,0 +1,39 @@
+Testing with snapshots
+
+Snapshots are what your current render looks like in raw HTML at this current point in time. When you write
+a test with a snapshot, you are first creating the snapshot with the correct information. Later, if anyone
+tries to change your code and it results in different raw HTML code, then you will fail your test because
+the current snapshot does not match the previous snapshot.
+
+When you first fail that test, with vitest, you can update the snapshot and then subsequently pass the test.
+Depending on which function you use, the snapshot can either get saved into a file in the folder
+__snapshots__ OR if you wish to MatchInline, then you can see vitest placing the snapshot code into the
+testing file after compilation, allowing you to modify the snap in the test itself.
+
+Snapshots aren't JUST for React. You can use them with JSONs as well. Example: JSON object to test an API
+call is viable as well.
+
+There is a caveat to using these snapshots. When we wrote a snapshot test for Results, and then subsequently
+changed Pet, we failed the test! Why? Well the Results component relies on the Pet component and so when
+we changed Pet, we changed the rendered output of Results, leading to a failing test. This shows us how
+snapshot tests can have indirection and can lead us to looking at bugs that are located elsewhere.
+
+To combat that, we can use something called "shallow rendering". This will not test the inner React
+components by writing a snapshot that doesn't go down the rabbit hole. The "shallow rendering" snapshot
+will write partial HTML, keeping the inner React components intact, instead of expanding upon them.
+
+Snapshots should NOT be edited. Editing them directly is dangerous because then it's synonymous to
+changing the tests. The files that get generated should also be placed onto Git because you need to have
+record of these for later.
+
+Personal thoughts:
+This seems quite annoying. You're testing to see if the UI changes (which it probably will over time) rather
+than if it has the expected functionality that you want. Therefore, it's very static in its test and
+requires the output to be EXACTLY as we imagined it to be, not more and not less. I think the Inline version
+of the function is MUCH more helpful, but I can also see how it'd bog you down over time.
+
+INSTRUCTOR NOTE:
+Using these snapshots is a great way to test whether the API call returns a JSON shape that doesn't change
+over time. You don't want the JSON to change shape between client and server because that could cause more
+code to break. It's a guarantee from the back-end that the API response will always be a JSON shape that
+you EXPECT to reach your front-end.
