@@ -1,0 +1,10 @@
+Now let's get into testing functions that have API calls within them.
+
+The example in this app is useBreedList, which uses fetchBreedList, which class fetch on an API endpoint.
+If we were to write a test that directly tests this, we'd be hitting this API super frequently that we
+would probably end up getting rate-limited or timed-out for suspicious behavior, or something along those
+lines. In order to combat that, let's MOCK that.
+
+Mocking will let us take over an input/output of a function for the purposes of test. It leaves nothing
+up to chance and allows us to test only the snippet that we care about, not the snippet AND its subsequent
+calls.
